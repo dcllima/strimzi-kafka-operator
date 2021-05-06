@@ -115,21 +115,15 @@ cp-kafka-rest:
 ## ------------------------------------------------------
 cp-kafka-connect:
   enabled: true
-  image: confluentinc/cp-kafka-connect 
-  imageTag: 5.5.0
+  image: dcllima/cp-kafka-connect
+  imageTag: 6.1.1
   #owshq/owshq-cp-kafka-connect 1.0
   ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
   imagePullSecrets:
   #  - name: "regcred"
   heapOptions: "-Xms512M -Xmx512M"
-  resources: {}
-  command: 
-    - bash
-    - -c
-    - |
-    - confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.4.0
-    
+  resources: {}   
 
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
   ## and remove the curly braces after 'resources:'
