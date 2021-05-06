@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: confluent-cp-kafka-connect-headless
+  namespace: confluent
+spec:
+  clusterIP: None 
+  selector:
+    app: cp-kafka-connect
+    release: confluent
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
