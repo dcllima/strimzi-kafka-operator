@@ -8,7 +8,8 @@ RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.1.0 \
 &&  confluent-hub install --no-prompt debezium/debezium-connector-mysql:1.1.0 \
 &&  confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.1.0 \
 &&  confluent-hub install --no-prompt debezium/debezium-connector-sqlserver:1.1.0 \
-&&  confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.1.1
+&&  confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.1.1 \
+&&  confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.0.0
 # RUN confluent-hub install --no-prompt debezium/debezium-connector-mongodb:1.1.0
 # RUN confluent-hub install --no-prompt streamthoughts/kafka-connect-file-pulse:1.2.1
 # RUN confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:1.2.4
