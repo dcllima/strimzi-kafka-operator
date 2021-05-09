@@ -6,13 +6,6 @@ spec:
   kafka:
     version: 2.7.0
     replicas: 3
-    # resources:
-    #   requests:
-    #     memory: 4Gi
-    #     cpu: "100m"
-    #   limits:
-    #     memory: 8Gi
-    #     cpu: "300m"
     listeners:
       - name: plain
         port: 9092
@@ -35,9 +28,11 @@ spec:
         type: persistent-claim
         size: 100Gi
         deleteClaim: false
+      - id: 1
+        type: persistent-claim
+        size: 100Gi
+        deleteClaim: false
   zookeeper:
-    metadata:
-      name: edh-zookeeper
     replicas: 3
     storage:
       type: persistent-claim
@@ -46,4 +41,3 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
-
