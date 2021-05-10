@@ -1,0 +1,103 @@
+K3D
+
+k3d cluster create meuprimeirocluster
+
+k3d cluster delete meuprimeirocluster
+
+k3d cluster create meusegundo cluster --no-lb -- criar cluster sem load balancer
+
+k3d cluster list
+
+k3d cluster create meucluster --servers 3 --agents 3 -- criar cluster kubernetes
+
+k3d cluster create meucluster --servers 3 --agents 3  -p "8080:30000@loadbalancer" 
+--- Faz o bind de porta para loadbalancer
+
+--------------------------------------------------------------------------------------------
+Kubernetes
+
+kubectl get nodes
+kubectl api-resources --lista as apis do kubernetes
+
+ kubectl create -f .\api-conversao\meupod.yaml   
+
+ kubectl get pods   
+
+ kubectl describe pod meupod 
+
+ kubectl port-forward pod/meupod 8080:80 ---bind de porta 
+
+ kubectl get pods -l app=nginx -- filtrar  por label chave e valor 
+
+ kubectl apply -f .\api-conversao\meureplicaset.yaml --aplicar/atualizar script
+
+ kubectl get replicaset
+
+ kubectl describe replicaset meureplicaset
+
+ kubectl scale replicaset meureplicaset --replicas 20 --- replicaset  via comando
+
+ kubectl delete -f .\api-conversao\meureplicaset.yaml ---delete via arquivo
+
+ kubectl get deployment --- lista deployment
+
+ kubectl describe deployment meudeployment --- desc deployment
+
+ kubectl get pods -o wide --- saída com maiores detalhes
+
+
+ kubectl rollout undo deployment meudeployment -- rollback de versão de deployment
+ kubectl rollout undo deployment <nome do objeto, no caso deploy>
+
+ kubectl get services -- lista serviços
+
+ kubectl get all -- lista tudo 
+
+ kubectl delete -f .\api-conversao\service.yaml 
+
+ kubectl apply -f diretorio  -R roda recursivo nas subpastas
+
+ kubectl top pods -- tem que ter o metrics server instalado. Verifica qtd de recurso usado nos pods
+
+ kubectl get hpa --- auto scale automático
+
+ kubectl delete -f .\k8s\ -R --- delete recursivo
+
+kubectl config use-context k3d-meucluster
+kubectl cluster-info
+kubectl create namespace ingestion -- criar namespace
+
+kubectl get pods -n ingestion --- filtra pelo namespace
+
+kubectl exec -it --namespace=ingestion edh-kafka-0 -- bash
+
+kubectl logs -f edh-kafka-0 -n ingestion
+
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="Password@123" --- criar segredo 
+
+kubectl get pods -n confluent --watch --assistir criação
+
+kubectl exec -n confluent -c kafka-client -it kafka-client -- bash
+
+kubectl exec -c cp-kafka-broker -it confluent-cp-kafka-0  -- bin/bash 
+
+kubectl exec -n confluent -c cp-kafka-broker -it confluent-cp-kafka-0  -- bin/bash  -- acessar node
+ ----------------------------------------------------
+
+ Helm
+
+ helm repo add strimzi https://strimzi.io/charts/
+
+ helm install kafka strimzi/strimzi-kafka-operator --namespace ingestion --version 0.21.0
+
+ helm list --namespace ingestion
+
+ helm delete kafka -n ingestion
+
+ helm install confluent  confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=true --set cp-kafka.brokers=3
+
+ helm upgrade confluent  confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=true --set cp-kafka.brokers=3
+
+ 
+--------------------------------------------
+
