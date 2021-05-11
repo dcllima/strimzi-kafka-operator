@@ -94,9 +94,9 @@ kubectl exec -n confluent -c cp-kafka-broker -it confluent-cp-kafka-0  -- bin/ba
 
  helm delete kafka -n ingestion
 
- helm install confluent  confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=true --set cp-kafka.brokers=3
+ helm install confluent confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=false --set cp-kafka.brokers=3
 
- helm upgrade confluent  confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=true --set cp-kafka.brokers=3
+ helm upgrade confluent confluentinc/cp-helm-charts -f .\k8s\confluent\confluent_values_5.5.0.yaml --namespace confluent  --set serviceName="confluent" --set cp-control-center.enabled=true --set cp-kafka.brokers=3
 
  
 --------------------------------------------

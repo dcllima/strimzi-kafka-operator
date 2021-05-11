@@ -14,7 +14,7 @@ spec:
     value.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: true
     value.converter.schemas.enable: true
-    connection.url: "jdbc:sqlserver://134.209.129.188.151:1433;databaseName=teste"
+    connection.url: "jdbc:sqlserver://167.172.13.229:1433;databaseName=teste"
     connection.user: "sa"
     connection.password: "TestingPassword1"
     connection.attempts: "2"
