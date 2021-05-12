@@ -4,8 +4,7 @@ metadata:
   # connector name
   name: "ingest-src-sqlserver-kafka-teste-json-001"
   labels:
-    # kafka connect [cluster] name
-    strimzi.io/cluster: edh
+    strimzi.io/cluster: my-connect-cluster
 spec:
   class: io.confluent.connect.jdbc.JdbcSourceConnector
   tasksMax: 2
@@ -14,11 +13,11 @@ spec:
     value.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: true
     value.converter.schemas.enable: true
-    connection.url: "jdbc:sqlserver://167.172.13.229:1433;databaseName=teste"
+    connection.url: "jdbc:sqlserver://138.197.227.226:1433;databaseName=teste"
     connection.user: "sa"
     connection.password: "TestingPassword1"
     connection.attempts: "2"
-    query: "SELECT * FROM dbo.kafka_teste"
+    query: "select * from kafka_teste"
     mode: "incrementing"
     topic.prefix: "src-sqlserver-kafka-teste-json"
     incrementing.column.name: "id"

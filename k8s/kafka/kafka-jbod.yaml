@@ -2,6 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta1
 kind: Kafka
 metadata:
   name: edh
+  namespace: ingestion
 spec:
   kafka:
     version: 2.7.0
